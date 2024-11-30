@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bye Backdrop</title>
+    <link rel="stylesheet" href="../static/css/style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container1 {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+        }
+        .image {
+            margin: 20px;
+        }
+        img{
+            max-width: 500px;
+            max-height: 600px;
+            margin-left: 80px;
+        }
+        .image p
+        {
+            font-size: 21px;
+            margin-top: 15px;
+        }
+        .download-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+	        font-size: 16px;
+            width: auto;
+            cursor: pointer;
+        }
+        .download-button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+
+
+
+<body>
+    <!-- home section starts here  -->
+    <section class="home" id="home">
+        <div class="home-box">
+            <nav>
+                <div class="logo bars">
+                    <div class="bar">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <h3>Bye Backdrop</h3>
+                </div>
+                <div class="menu">
+                    <div class="close">
+                        <i class="fa fa-close"></i>
+                    </div>
+                    <ul>
+                        <li><a href="/process">Back</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+
+               <!-- Multiple Processed Images Section -->
+    {% if processed_images %}
+    <div class="container1">
+        <div class="row">
+            {% for image in processed_images %}
+            <div class="col-md-6">
+                <div class="image-container">
+                    <div class="image">
+                        <img src='../static/uploads/{{ image.org_img_name }}' alt="Original Image" class="img-fluid">
+                        <p>Original</p>
+                    </div>
+                    <div class="image">
+                        <img src='../static/uploads/{{ image.rembg_img_name }}' alt="No Background Image" class="img-fluid">
+                        <p>No Background</p>
+                    </div>
+                </div>
+                <a download href='../static/uploads/{{ image.rembg_img_name }}'>
+                    <button class="download-button">Download</button>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+
+        </div>
+    </section>
+    <!-- home section ends here  -->
+
+
+
+
+    <script>
+
+        // For Multiple Image Upload
+        const selectMultipleImages = document.querySelector('.select-images-multiple');
+        const inputFileMultiple = document.querySelector('#files');
+        const imgAreaMultiple = document.querySelector('.multi-img-area');
+
+        selectMultipleImages.addEventListener('click', function () {
+            inputFileMultiple.click();
+        });
+
+        inputFileMultiple.addEventListener('change', function () {
+            const images = this.files;
+            let valid = true;
+            Array.from(images).forEach(image => {
+                if (image.size > 50000000) valid = false;
+            });
+
+            if (valid) {
+                imgAreaMultiple.innerHTML = '';
+                Array.from(images).forEach(image => {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const img = document.createElement('img');
+                        img.src = reader.result;
+                        imgAreaMultiple.appendChild(img);
+                    };
+                    reader.readAsDataURL(image);
+                });
+            } else {
+                alert("One or more images exceed the 50MB limit");
+            }
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 2px;
+    font-family: 'Poppins', sans-serif;
+    text-transform: capitalize;
+    box-sizing: border-box;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+
+:root {
+    --dark-green: #112a34;
+    --green-color: #004047;
+    --white-color: #fff;
+}
+
+::selection {
+    background: var(--green-color);
+    color: var(--white-color);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    font-size: 90%;
+}
+
+section {
+    padding: 0 8rem;
+    width: 100%;
+}
+
+.label {
+    font-size: 1.1rem;
+    color:  #666;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.heading {
+    font-size: 3rem;
+    margin-top: 1rem;
+}
+
+section.home {
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+}
+
+.home .home-box {
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.home .home-box nav {
+    width: 100%;
+    height: 65px;
+    background: linear-gradient(rgb(255,255,255,.2),rgb(255,255,255,.2));
+    backdrop-filter: blur(1px);
+    border-radius: .7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    z-index: 10;
+    position: relative;
+}
+
+.home .home-box nav .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.home .home-box nav .logo .bar {
+    font-size: 1.35rem;
+    color: var(--white-color);
+    cursor: pointer;
+    display: none;
+}
+
+.home .home-box nav .logo .bar:hover {
+    color: var(--green-color);
+}
+
+.home .home-box nav .logo h3 {
+  
+    font-weight: 600;
+}
+
+.home .home-box nav .menu .close {
+    display: none;
+}
+
+.home .home-box nav .menu ul {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.home .home-box nav .menu ul li a {
+   color: #000;
+    font-weight: 500;
+}
+
+.home .home-box nav .menu ul li a:hover {
+    color: rgb(255 255 255/70%);
+}
+
+
+
+
+/* media section starts here  */
+@media (max-width: 1020px) {
+    html {
+        font-size: 85%;
+    }
+
+    section {
+        padding: 0 2rem;
+    }
+
+}
+
+@media (max-width: 910px) {
+
+    .home .home-box nav {
+        padding: 0 1rem;
+    }
+
+    .home .home-box nav .menu ul {
+        gap: 2rem;
+    }
+
+   
+}
+
+@media (max-width: 767px) {
+
+    .heading {
+        font-size: 2rem;
+    }
+    .home .home-box nav .menu {
+        display: none;
+    }
+
+    .home .home-box nav .logo .bar {
+        display: block;
+    }
+
+    .home .home-box nav .menu.active {
+        display: block;
+        position: absolute;
+        left: -1.5rem;
+        top: -1.5rem;
+        width: 100vw;
+        height: 100vh;
+        background: rgb(0 0 0/90%);
+        display: flex;
+        align-items: center;
+        padding: 0 3rem;
+    }
+
+    .home .home-box nav .menu .close {
+        display: block;
+        position: absolute;
+        left: 3rem;
+        top: 3rem;
+        cursor: pointer;
+        color: var(--white-color);
+        font-size: 2rem;
+    }
+
+    .home .home-box nav .menu .close:hover {
+        color: rgb(255 255 255/40%);
+    }
+
+    .home .home-box nav .menu ul {
+        flex-direction: column;
+        font-size: 1.3rem;
+        gap: 1rem;
+    }
+
+    .home .home-box nav .menu ul:hover li a {
+        color: rgba(93, 90, 90, 0.4);
+    }
+
+    .home .home-box nav .menu ul li a:hover {
+        color: var(--white-color);
+    }
+
+}
+/* media section starts here  */
